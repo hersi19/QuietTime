@@ -2,18 +2,20 @@ package com.example.quiettime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
+    public static final String CAT = "CreateNewTask";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Log.i(TAG, "onCreate");
     }
 
@@ -59,4 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i(TAG, "onRestart");
     }
+
+    public void createNewTask(View view){
+        Intent intent = new Intent(this,CreateNewTask.class);
+        startActivity(intent);
+    }
+
+
 }

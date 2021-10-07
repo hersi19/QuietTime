@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">QuietTime</string>
+    <string name="New_task">Add A New Task</string>
+    <string name="Create_new">Create A New Task</string>
+    <string name="task_name">Enter a task name</string>
+    <string name="enter_time">Please enter the time</string>
+    <string name="enter_location">Please enter the location</string>
+    <string name="save">Save</string>
 </resources>
