@@ -12,11 +12,16 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     public static final String CAT = "CreateNewTask";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG, "onCreate");
+
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().add(R.id.container,new Fragment1(),"f1").commit();
+        }
     }
 
     @Override

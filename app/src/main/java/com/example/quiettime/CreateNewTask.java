@@ -18,6 +18,9 @@ public class CreateNewTask extends AppCompatActivity {
         Intent intent = getIntent();
         //TextView textView = findViewById(R.id.textView);
         Log.i(CAT,"onCreate");
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().add(R.id.container,new Fragment1(),"f1").commit();
+        }
     }
 
     @Override
