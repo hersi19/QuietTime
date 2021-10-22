@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "104072886437",
+    "project_id": "quiettime-e9875",
+    "storage_bucket": "quiettime-e9875.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104072886437:android:f4cc7265ed62656c06f54c",
+        "android_client_info": {
+          "package_name": "com.example.quiettime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104072886437-9p2v2ktnj8n84s8k1vpu40nqn3741kbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWi4HhelVIU2Y_TQovOSvM6S8GHJdfmXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104072886437-9p2v2ktnj8n84s8k1vpu40nqn3741kbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

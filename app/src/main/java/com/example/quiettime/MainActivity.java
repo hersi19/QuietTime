@@ -7,21 +7,39 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    public static final String CAT = "CreateNewTask";
+
+    private Button logIn,register;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //handle login button
+        logIn = findViewById(R.id.MainPage_Login);
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLogInActivity();
+            }
+        });
+
+        //handle register button
+        register = findViewById(R.id.MainPage_Register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRegisterActivity();
+            }
+        });
         Log.i(TAG, "onCreate");
 
-        if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().add(R.id.container,new Fragment1(),"f1").commit();
-        }
+
     }
 
     @Override
@@ -67,9 +85,14 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "onRestart");
     }
 
-    public void createNewTask(View view){
-        Intent intent = new Intent(this,CreateNewTask.class);
-        startActivity(intent);
+    public void openLogInActivity(){
+        Intent intent1 = new Intent(this,LogInActivity.class);
+        startActivity(intent1);
+    }
+
+    public void openRegisterActivity(){
+        Intent intent2 = new Intent(this,RegisterAccountActivity.class);
+        startActivity(intent2);
     }
 
 
