@@ -3,7 +3,6 @@ package com.example.quiettime;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -37,6 +37,16 @@ public class LogInActivity extends AppCompatActivity {
         mLoginBtn= findViewById(R.id.loginBtn);
 
         fAuth=FirebaseAuth.getInstance();
+
+        FirebaseUser user = fAuth.getCurrentUser();
+
+        //Redirect logged in users to main page
+        if(fAuth.getCurrentUser() != null){
+
+            String uid = user.getUid();
+            Log.i("LoginActivity:", "Current UserId: "+uid);
+
+        }
 
         mLoginBtn.setOnClickListener( new View.OnClickListener(){
 
@@ -67,7 +77,12 @@ public class LogInActivity extends AppCompatActivity {
 
                             Toast.makeText(LogInActivity.this, "Login is successful",Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(getApplicationContext(), Activity.class));
+                            FirebaseUser user = fAuth.getCurrentUser();
+                            String uid = user.getUid();
+                            Log.i("LoginActivity:", "Current UserId: "+uid);
+
+                            Intent intent=new Intent(LogInActivity.this, AccountActivity.class);
+                            startActivity(intent);
 
                         }else{
 
