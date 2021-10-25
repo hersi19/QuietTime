@@ -109,8 +109,9 @@ public class RegisterAccountActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(RegisterAccountActivity.this, "User Created",Toast.LENGTH_SHORT).show();
 
-                                    Intent intent=new Intent(RegisterAccountActivity.this, AccountActivity.class);
+                                    Intent intent=new Intent(RegisterAccountActivity.this, TasksActivity.class);
                                     startActivity(intent);
+                                    finish();
                                 }
                             });
 

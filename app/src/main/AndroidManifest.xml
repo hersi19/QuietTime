@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuietTime">
         <activity
+            android:name=".TasksActivity"
+            android:exported="true" />
+        <activity
             android:name=".AccountActivity"
             android:exported="true" />
         <activity

@@ -9,8 +9,8 @@ import com.google.firebase.database.DatabaseReference;
 
 public class AccountActivity extends AppCompatActivity {
 
-    ActivityReadDataBinding binding;
-    DatabaseReference reference;
+//    ActivityReadDataBinding binding;
+//    DatabaseReference reference;
 
     
 
