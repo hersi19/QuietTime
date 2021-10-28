@@ -84,9 +84,11 @@ public class AccountActivity extends AppCompatActivity {
                 reference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        Log.d(TAG,"User Account deleted");
-                        startActivity(new Intent(AccountActivity.this,MainActivity.class));
+                    if(task.isSuccessful()) {
+                        Log.d(TAG, "User Account deleted");
+                        startActivity(new Intent(AccountActivity.this, MainActivity.class));
+                        Toast.makeText(AccountActivity.this,"Account has been successfully deleted.",Toast.LENGTH_SHORT).show();
+
                     }else{
                         Log.w(TAG,"Something went wrong");
                     }
