@@ -32,7 +32,6 @@ public class TasksActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
-//    private MyAdapter myAdapter;
     private FloatingActionButton floatingActionButton;
 
     private DatabaseReference reference;
@@ -56,9 +55,10 @@ public class TasksActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tasks");
 
+        recyclerView = findViewById(R.id.tasksRecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
-//        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setStackFromEnd(true);
 
         recyclerView = findViewById(R.id.tasksRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -275,5 +275,7 @@ public class TasksActivity extends AppCompatActivity {
 
 
         dialog.show();
+
+
     }
 }
