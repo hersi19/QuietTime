@@ -44,11 +44,14 @@
 
             <EditText
                 android:id="@+id/task_input"
-                android:hint="Task"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Task"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -139,12 +142,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2">
+
             <Button
                 android:id="@+id/task_cancel_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Cancel"/>
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Cancel" />
         </RelativeLayout>
 
         <RelativeLayout
