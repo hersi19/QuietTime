@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".TasksActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tasks_toolbar"
-        android:background="#4f2deb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -21,19 +15,40 @@
             android:id="@+id/tasksRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
         </androidx.recyclerview.widget.RecyclerView>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            app:itemBackground="@color/design_default_color_on_primary"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:layout_anchor="@+id/tasksRecyclerView"
+            app:layout_anchorGravity="bottom|center"
+            app:menu="@menu/bottom_nav_menu" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tasks_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4f2deb" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="191dp"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="TODO"
             android:src="@drawable/ic_add"
-            app:backgroundTint="#4f2deb"/>
+            app:backgroundTint="#4f2deb"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
-</LinearLayout>
+</RelativeLayout>

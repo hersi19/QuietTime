@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ActionMenuView;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +35,7 @@ public class AccountActivity extends AppCompatActivity {
     Button mUpdateBtn, mLogoutBtn, mDeleteBtn;
     FirebaseAuth fAuth;
     DatabaseReference reference;
-
+    BottomNavigationView bottom_nav;
 
 
     @Override
@@ -92,6 +95,32 @@ public class AccountActivity extends AppCompatActivity {
                     }
                 }
             });
+            }
+        });
+
+        //handle bottom navigation bar
+        bottom_nav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottom_nav.setSelectedItemId(R.id.navigation_task);
+
+        bottom_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.navigation_task:
+                        startActivity(new Intent(getApplicationContext(),TasksActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    //case R.id.navigation_maps:
+                    //startActivity(new Intent(getApplicationContext(),Maps.class));
+                    //overridePendingTransition(0,0);
+                    // return true;
+                    case R.id.navigation_profile:
+                        startActivity(new Intent(getApplicationContext(),AccountActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+
+                return false;
             }
         });
 
