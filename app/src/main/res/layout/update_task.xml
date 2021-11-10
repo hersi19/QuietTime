@@ -8,13 +8,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add a new task"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:background="#4f2deb"
+        android:textColor="#FFF"
+        android:text="Update Task"
         android:padding="10dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,27 +24,24 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
-
+            android:layout_weight="4">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Task"
-                android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="#000"
                 android:layout_margin="10dp"/>
-
         </RelativeLayout>
-
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4">
+            android:layout_weight="2">
 
             <EditText
-                android:id="@+id/task_input"
+                android:id="@+id/update_task_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -51,10 +49,9 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:hint="Task"
+                android:textColorHint="#000"
                 android:textStyle="bold" />
-
         </RelativeLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -64,35 +61,30 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
-
+            android:layout_weight="4">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Description"
-                android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="#000"
                 android:layout_margin="10dp"/>
-
         </RelativeLayout>
-
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4">
-
+            android:layout_weight="2">
             <EditText
-                android:id="@+id/description_input"
-                android:hint="Description"
+                android:id="@+id/update_description_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Description"
                 android:textStyle="bold"
+                android:textColorHint="#000"
                 android:layout_margin="10dp"/>
-
         </RelativeLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -102,74 +94,65 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
-
+            android:layout_weight="4">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Duration"
-                android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="#000"
                 android:layout_margin="10dp"/>
-
         </RelativeLayout>
-
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4">
-
+            android:layout_weight="2">
             <EditText
-                android:id="@+id/duration_input"
-                android:hint="Duration"
+                android:id="@+id/update_duration_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Duration"
                 android:textStyle="bold"
+                android:textColorHint="#000"
                 android:layout_margin="10dp"/>
-
         </RelativeLayout>
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2">
-
             <Button
-                android:id="@+id/task_cancel_button"
+                android:id="@+id/delete_task_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Cancel" />
+                android:text="Delete"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2">
             <Button
-                android:id="@+id/task_save_button"
+                android:id="@+id/update_task_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Save"/>
+                android:text="Update"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
         </RelativeLayout>
-
     </LinearLayout>
 
-
-
-
 </LinearLayout>
-
