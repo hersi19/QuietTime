@@ -9,11 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -42,8 +47,7 @@ public class TasksActivity extends AppCompatActivity {
     private String task;
     private String description;
     private String duration;
-
-    private ArrayList<Task> list;
+    private boolean isComplete;
 
 
     @Override
@@ -57,9 +61,6 @@ public class TasksActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.tasksRecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
-
         recyclerView = findViewById(R.id.tasksRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -123,7 +124,7 @@ public class TasksActivity extends AppCompatActivity {
                     Toast.makeText(TasksActivity.this, "Failed: Must enter Duration ",Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-                    Task t = new Task(mTask, mDescription, mDuration, id);
+                    Task t = new Task(mTask, mDescription, mDuration, id, false);
                     reference.child(id).setValue(t).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
@@ -138,22 +139,19 @@ public class TasksActivity extends AppCompatActivity {
                 }
             }
         });
-
         dialog.show();
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseRecyclerOptions<Task> options = new FirebaseRecyclerOptions.Builder<Task>()
-                .setQuery(reference, Task.class)
+                .setQuery(reference.orderByChild("isComplete"), Task.class)
                 .build();
-
         FirebaseRecyclerAdapter<Task, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Task, MyViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Task model) {
+                holder.setStatus(model.getIsComplete());
                 holder.setTask(model.getTask());
                 holder.setDescription(model.getDescription());
                 holder.setDuration(model.getDuration());
@@ -164,25 +162,20 @@ public class TasksActivity extends AppCompatActivity {
                         key = getRef(position).getKey();
                         task = model.getTask();
                         description = model.getDescription();
-
+                        isComplete = model.getIsComplete();
                         updateTask();
                     }
                 });
-
             }
-
             @NonNull
             @Override
             public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
-
                 return new MyViewHolder(view);
             }
         };
-
         recyclerView.setAdapter(adapter);
         adapter.startListening();
-
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -209,6 +202,21 @@ public class TasksActivity extends AppCompatActivity {
             durationTextView.setText(duration);
         }
 
+        public void setStatus(boolean isChecked){
+            TextView statusView = view.findViewById(R.id.taskStatus);
+            LinearLayout statusParent = view.findViewById(R.id.statusParent);
+            if(isChecked){
+                statusView.setText("Completed");
+                statusView.setBackgroundResource(R.color.green);
+                statusParent.setBackgroundResource(R.color.green);
+            }else{
+                statusView.setText("Task");
+                statusView.setBackgroundResource(R.color.purple_500);
+                statusParent.setBackgroundResource(R.color.purple_500);
+            }
+
+        }
+
     }
 
     private void updateTask(){
@@ -218,18 +226,22 @@ public class TasksActivity extends AppCompatActivity {
         myDialog.setView(view);
 
         AlertDialog dialog = myDialog.create();
+        dialog.setCancelable(true);
 
         EditText mTask = view.findViewById(R.id.update_task_text);
         EditText mDescription = view.findViewById(R.id.update_description_text);
         EditText mDuration = view.findViewById(R.id.update_duration_text);
+        CheckBox mCheckbox = view.findViewById(R.id.completed);
+        mCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            }
+        });
 
         mTask.setText(task);
-//        mTask.setSelection(task.length());
         mDescription.setText(description);
-//        mDescription.setSelection(description.length());
         mDuration.setText(duration);
-//        mDuration.setSelection(duration.length());
-
+        mCheckbox.setChecked(isComplete);
         Button deleteBtn = view.findViewById(R.id.delete_task_btn);
         Button updateBtn = view.findViewById(R.id.update_task_btn);
 
@@ -239,8 +251,8 @@ public class TasksActivity extends AppCompatActivity {
                 task = mTask.getText().toString();
                 description = mDescription.getText().toString();
                 duration = mDuration.getText().toString();
-
-                Task t = new Task(task, description, duration, key);
+                isComplete = mCheckbox.isChecked();
+                Task t = new Task(task, description, duration, key, isComplete);
 
                 reference.child(key).setValue(t).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -255,7 +267,6 @@ public class TasksActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -272,10 +283,6 @@ public class TasksActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
-
         dialog.show();
-
-
     }
 }
