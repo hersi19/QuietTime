@@ -81,12 +81,8 @@ public class LogInActivity extends AppCompatActivity {
                             String uid = user.getUid();
                             Log.i("LoginActivity:", "Current UserId: "+uid);
 
-<<<<<<< HEAD
-                            Intent intent=new Intent(LogInActivity.this, AccountActivity.class);
-=======
                             Intent intent=new Intent(LogInActivity.this, TasksActivity.class);
-//                            Intent intent=new Intent(LogInActivity.this, AccountActivity.class);
->>>>>>> registeration
+
                             startActivity(intent);
                             finish();
 
