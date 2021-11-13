@@ -95,10 +95,10 @@ public class TasksActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),TasksActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    //case R.id.navigation_maps:
-                        //startActivity(new Intent(getApplicationContext(),Maps.class));
-                        //overridePendingTransition(0,0);
-                       // return true;
+                    case R.id.navigation_maps:
+                        startActivity(new Intent(getApplicationContext(),PlaceFinder.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.navigation_profile:
                         startActivity(new Intent(getApplicationContext(),AccountActivity.class));
                         overridePendingTransition(0,0);

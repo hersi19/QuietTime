@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,7 +24,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,6 +42,7 @@ import java.util.List;
 
 public class PlaceFinder extends AppCompatActivity {
 
+    final String TAG = "PlaceFinder";
     Spinner spType;
     Button btFind;
     SupportMapFragment mSupportMapFragment;
@@ -49,6 +55,7 @@ public class PlaceFinder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_finder);
+        Log.d(TAG,"OnCreate called");
 
         spType = findViewById(R.id.sp_type);
         btFind = findViewById(R.id.bt_find);
@@ -77,7 +84,7 @@ public class PlaceFinder extends AppCompatActivity {
 
             //Request permission
             ActivityCompat.requestPermissions(
-                    PlaceFinder.this, new String[] Manifest.permission.ACCESS_FINE_LOCATION, 44);
+                    PlaceFinder.this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
 
         btFind.setOnClickListener( new View.OnClickListener(){
@@ -89,9 +96,10 @@ public class PlaceFinder extends AppCompatActivity {
                 //Init url
                 String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
                         "?location=" + currentLat + "," + currentLong +
-                        "&radius=5000" + "&type=" + placeTypeList[i] +
+                        "&radius=20000" + "&type=" + placeTypeList[i] +
                         "&sensor=true" + "&key=" + getResources().getString(R.string.google_map_key);
 
+                Log.d(TAG,"place URL set");
                 //Execute place task method to download json data
                 new PlaceTask().execute(url);
             }
@@ -107,26 +115,32 @@ public class PlaceFinder extends AppCompatActivity {
             @Override
             public void onSuccess(Location location){
 
-                if(location !=null){
+                //Can't find address of user, use this as default
+                currentLat=40.060280;
+                currentLong=-82.972570;
+                //if(location !=null) {
+                    Log.d(TAG, "current location found");
 
-                    currentLat=location.getLatitude();
-                    currentLong=location.getLongitude();
+                    //currentLat=location.getLatitude();
+                    //currentLong=location.getLongitude();
 
                     //Sync map
                     mSupportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
 
-                            map=googleMap;
+                            map = googleMap;
 
                             //Zoom into current location
                             map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(currentLat,currentLong), 10
+                                    new LatLng(currentLat, currentLong), 10
                             ));
 
                         }
                     });
-                }
+
+
+                //}
             }
         });
 
@@ -155,7 +169,11 @@ public class PlaceFinder extends AppCompatActivity {
             String data=null;
             try {
                 //Init data
+                Log.d(TAG,"call URL"+strings[0]);
                data = downloadUrl(strings[0]);
+                Log.d(TAG,"return from downloadUrl");
+                Log.d(TAG,data);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -172,6 +190,7 @@ public class PlaceFinder extends AppCompatActivity {
     }
 
     private String downloadUrl(String string) throws IOException {
+        Log.d(TAG,"downloadUrl");
         //Init url
         URL url=new URL(string);
 
@@ -211,11 +230,56 @@ public class PlaceFinder extends AppCompatActivity {
     private class ParserTask extends AsyncTask<String,Integer,List<HashMap<String,String>>>{
 
         @Override
-        List<HashMap<String,String>> doInBackground(String... strings){
+        protected List<HashMap<String,String>> doInBackground(String... strings){
 
             //Create json parser class
-            JsonParser
-            return null;
+            JsonParser jsonParser= new JsonParser();
+
+            //Init hash map list
+            List<HashMap<String, String>> mapList=null;
+            //Init json object
+            JSONObject object=null;
+            try {
+                object=new JSONObject(strings[0]);
+                //Parse json object
+                mapList=jsonParser.parseResult(object);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            Log.d(TAG,"mapList>>"+mapList);
+
+            return mapList;
+        }
+
+        @Override
+        protected void onPostExecute(List<HashMap<String, String>> hashMaps){
+
+            //Clear map
+            map.clear();
+
+
+            for(int i=0;i<hashMaps.size(); i++){
+                //Init hashmap
+                HashMap<String, String> hashMapList=hashMaps.get(i);
+                //Get latitude
+                double lat=Double.parseDouble(hashMapList.get("lat"));
+                //Get longitude
+                double lng=Double.parseDouble(hashMapList.get("lng"));
+                //Get name
+                String name=hashMapList.get("name");
+                //Concat lat and lng
+                LatLng latLng=new LatLng(lat,lng);
+                //Init marker options
+                MarkerOptions options= new MarkerOptions();
+                //Set position
+                options.position(latLng);
+                //Set title
+                options.title(name);
+                //Add marker on map
+                map.addMarker(options);
+
+            }
         }
 
     }

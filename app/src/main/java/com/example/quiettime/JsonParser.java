@@ -25,6 +25,7 @@ public class JsonParser {
             String longitude=object.getJSONObject("geometry").getJSONObject("location").getString("lng");
 
             //Put all values in the hashmap
+            dataList.put("name",name);
             dataList.put("lat",latitude);
             dataList.put("lng",longitude);
         } catch (JSONException e) {
@@ -53,6 +54,21 @@ public class JsonParser {
         }
 
         return dataList;
+    }
+
+    public List<HashMap<String,String>> parseResult(JSONObject object){
+
+        //Init Json array
+        JSONArray jsonArray=null;
+
+        //Get result array
+        try {
+            jsonArray=object.getJSONArray("results");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return parseJsonArray(jsonArray);
     }
 
 
