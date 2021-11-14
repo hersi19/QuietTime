@@ -7,11 +7,13 @@ import androidx.loader.content.AsyncTaskLoader;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +28,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,7 +53,7 @@ public class PlaceFinder extends AppCompatActivity {
     GoogleMap map;
     FusedLocationProviderClient mFusedLocationProviderClient;
     double currentLat=0, currentLong=0;
-
+    BottomNavigationView bottom_nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +106,32 @@ public class PlaceFinder extends AppCompatActivity {
                 Log.d(TAG,"place URL set");
                 //Execute place task method to download json data
                 new PlaceTask().execute(url);
+            }
+        });
+
+        //handle bottom navigation bar
+        bottom_nav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottom_nav.setSelectedItemId(R.id.navigation_task);
+
+        bottom_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.navigation_task:
+                        startActivity(new Intent(getApplicationContext(),TasksActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.navigation_maps:
+                        startActivity(new Intent(getApplicationContext(),PlaceFinder.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.navigation_profile:
+                        startActivity(new Intent(getApplicationContext(),AccountActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+
+                return false;
             }
         });
 
