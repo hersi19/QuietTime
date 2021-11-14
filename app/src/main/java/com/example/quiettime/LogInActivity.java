@@ -82,12 +82,11 @@ public class LogInActivity extends AppCompatActivity {
                             Log.i("LoginActivity:", "Current UserId: "+uid);
 
                             Intent intent=new Intent(LogInActivity.this, TasksActivity.class);
-//                            Intent intent=new Intent(LogInActivity.this, AccountActivity.class);
+                            //Intent intent=new Intent(LogInActivity.this, AccountActivity.class);
                             startActivity(intent);
                             finish();
 
                         }else{
-
                             Toast.makeText(LogInActivity.this, "Error! "+ task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                             Log.i("Login error", task.getException().getMessage());
                         }
