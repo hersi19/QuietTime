@@ -22,10 +22,19 @@
             android:name=".PlaceFinder"
             android:exported="true" />
         <activity
-            android:name=".TasksActivity"
+            android:name=".PhoneActivity"
             android:exported="true" />
         <activity
-            android:name=".AccountActivity"
+            android:name=".PasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".EmailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TasksActivity"
             android:exported="true" />
         <activity
             android:name=".RegisterAccountActivity"

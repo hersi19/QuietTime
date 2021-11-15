@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterAccountActivity extends AppCompatActivity {
     public static final String REG = "RegisterAccountActivity";
 
-    EditText mUsername, mEmail, mPass, mConfirmPass;
+    EditText mUsername, mEmail, mPhone,mPass, mConfirmPass;
     Button mRegisterBtn;
 
     FirebaseAuth fAuth;
@@ -34,6 +34,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
         mUsername= findViewById(R.id.usernameInput);
         mEmail=findViewById(R.id.emailInput);
+        mPhone = findViewById(R.id.phoneinput);
         mPass=findViewById(R.id.passInput);
         mConfirmPass=findViewById(R.id.confirmPassInput);
 
@@ -54,6 +55,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
             public void onClick(View v){
                 String email=mEmail.getText().toString().trim();
                 String username=mUsername.getText().toString().trim();
+                String phone = mPhone.getText().toString().trim();
                 String pass=mPass.getText().toString().trim();
                 String confirmPass=mConfirmPass.getText().toString().trim();
 
@@ -64,6 +66,11 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is required");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(email)){
+                    mPhone.setError("Phone is required");
                     return;
                 }
 
@@ -98,8 +105,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
                             //Save User Data into the firebase Realtime Database
                             //Temp phone number
-                            String phone="1234567890";
-                            ReadWriteUserDetails writeUserDetails= new ReadWriteUserDetails(username, email,phone );
+                            ReadWriteUserDetails writeUserDetails= new ReadWriteUserDetails(username, email,phone);
 
                             //Extracting User reference from Database for "users"
                             DatabaseReference referenceProfile= FirebaseDatabase.getInstance().getReference("users");
