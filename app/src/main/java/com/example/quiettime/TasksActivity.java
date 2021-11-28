@@ -193,6 +193,7 @@ public class TasksActivity extends AppCompatActivity {
                         key = getRef(position).getKey();
                         task = model.getTask();
                         description = model.getDescription();
+                        duration = model.getDuration();
                         isComplete = model.getIsComplete();
                         updateTask();
                     }

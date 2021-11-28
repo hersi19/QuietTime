@@ -7,9 +7,11 @@ import androidx.loader.content.AsyncTaskLoader;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -140,21 +143,14 @@ public class PlaceFinder extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
-
         mFusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>(){
             @Override
             public void onSuccess(Location location){
 
-                //Can't find address of user, use this as default
-                currentLat=40.060280;
-                currentLong=-82.972570;
-                //if(location !=null) {
-                    Log.d(TAG, "current location found");
+                if (location != null) {
+                    currentLat = location.getLatitude();
+                    currentLong = location.getLongitude();
 
-                    //currentLat=location.getLatitude();
-                    //currentLong=location.getLongitude();
-
-                    //Sync map
                     mSupportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
@@ -163,14 +159,12 @@ public class PlaceFinder extends AppCompatActivity {
 
                             //Zoom into current location
                             map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(currentLat, currentLong), 10
+                                    new LatLng(currentLat, currentLong), 12
                             ));
 
                         }
                     });
-
-
-                //}
+                }
             }
         });
 
