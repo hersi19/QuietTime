@@ -2,6 +2,7 @@ package com.example.quiettime;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,12 +29,17 @@ public class ProfileActivity extends AppCompatActivity {
     Button email,password,phone,delete_account,logout_button;
     FirebaseAuth fAuth;
     BottomNavigationView bottom_nav;
+    private Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        toolbar = findViewById(R.id.profile_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Profile");
 
         userName= findViewById(R.id.profile_username);
         email= findViewById(R.id.profile_email);
@@ -42,6 +48,8 @@ public class ProfileActivity extends AppCompatActivity {
         logout_button= findViewById(R.id.profile_logout);
         fAuth= FirebaseAuth.getInstance();
         String userId = fAuth.getUid();
+
+
 
 
         //access to realtime database
@@ -98,7 +106,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         //handle bottom navigation bar
         bottom_nav = findViewById(R.id.bottom_navigation);
-        bottom_nav.setSelectedItemId(R.id.navigation_task);
+        bottom_nav.setSelectedItemId(R.id.navigation_profile);
         bottom_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -108,8 +116,8 @@ public class ProfileActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_maps:
-                    startActivity(new Intent(getApplicationContext(),PlaceFinder.class));
-                    overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(),PlaceFinder.class));
+                        overridePendingTransition(0,0);
                      return true;
                     case R.id.navigation_profile:
                         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));

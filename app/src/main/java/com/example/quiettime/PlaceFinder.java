@@ -2,6 +2,7 @@ package com.example.quiettime;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.loader.content.AsyncTaskLoader;
 
@@ -57,12 +58,17 @@ public class PlaceFinder extends AppCompatActivity {
     FusedLocationProviderClient mFusedLocationProviderClient;
     double currentLat=0, currentLong=0;
     BottomNavigationView bottom_nav;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_finder);
         Log.d(TAG,"OnCreate called");
+
+        toolbar = findViewById(R.id.map_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Quiet Places");
 
         spType = findViewById(R.id.sp_type);
         btFind = findViewById(R.id.bt_find);
@@ -114,7 +120,7 @@ public class PlaceFinder extends AppCompatActivity {
 
         //handle bottom navigation bar
         bottom_nav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottom_nav.setSelectedItemId(R.id.navigation_task);
+        bottom_nav.setSelectedItemId(R.id.navigation_maps);
 
         bottom_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

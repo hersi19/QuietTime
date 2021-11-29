@@ -11,9 +11,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14375" />
         <entry key="app/src/main/res/layout/activity_place_finder.xml" value="0.15526849037487336" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.15476190476190477" />
         <entry key="app/src/main/res/layout/activity_register_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_tasks.xml" value="0.15526849037487336" />
         <entry key="app/src/main/res/layout/fragment_1.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/task_input.xml" value="0.15476190476190477" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.14375" />
       </map>
     </option>
