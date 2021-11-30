@@ -68,9 +68,9 @@
                         android:id="@+id/profile_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/green"
+                        android:background="@color/purple_700"
                         android:text="Email"
-                        android:textColor="#0B0B0B"
+                        android:textColor="#7CB342"
                         android:textSize="16sp" />
                 </RelativeLayout>
             </LinearLayout>
@@ -135,7 +135,7 @@
                         android:layout_marginEnd="68dp"
                         android:background="@color/purple_700"
                         android:text="Logout"
-                        android:textColor="#7CB342"
+                        android:textColor="#0E0E0E"
                         tools:ignore="TextContrastCheck" />
                 </RelativeLayout>
             </LinearLayout>

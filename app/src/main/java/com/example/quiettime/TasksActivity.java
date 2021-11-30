@@ -36,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TasksActivity extends AppCompatActivity {
 
@@ -53,7 +54,6 @@ public class TasksActivity extends AppCompatActivity {
     private String description;
     private String duration;
     private boolean isComplete;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +83,7 @@ public class TasksActivity extends AppCompatActivity {
                 addTask();
             }
         });
+
 
 
         //handle bottom navigation bar

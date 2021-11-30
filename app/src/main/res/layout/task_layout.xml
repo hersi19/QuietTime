@@ -26,13 +26,13 @@
                 android:id="@+id/taskStatus"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:textColor="#FFF"
-                android:text="Task"
-                android:gravity="center"
                 android:background="#4f2deb"
+                android:gravity="center"
                 android:padding="10dp"
+                android:text="@string/task"
+                android:textColor="#0C0C0C"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 

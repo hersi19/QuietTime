@@ -31,4 +31,5 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="google_map_key">AIzaSyBhtmwJUMcnQXocU4_5lGjM23HBrr-obco</string>
+    <string name="task">Task</string>
 </resources>
