@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +24,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
     public static final String REG = "RegisterAccountActivity";
 
     EditText mUsername, mEmail, mPhone,mPass, mConfirmPass;
+    TextView mUserMsg;
     Button mRegisterBtn;
 
     FirebaseAuth fAuth;
@@ -32,6 +34,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_account);
 
+        mUserMsg = findViewById(R.id.register_error);
         mUsername= findViewById(R.id.usernameInput);
         mEmail=findViewById(R.id.emailInput);
         mPhone = findViewById(R.id.phoneinput);
@@ -53,6 +56,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v){
+                mUserMsg.setText("");
                 String email=mEmail.getText().toString().trim();
                 String username=mUsername.getText().toString().trim();
                 String phone = mPhone.getText().toString().trim();
@@ -60,37 +64,44 @@ public class RegisterAccountActivity extends AppCompatActivity {
                 String confirmPass=mConfirmPass.getText().toString().trim();
 
                 if(TextUtils.isEmpty(username)){
+                    mUserMsg.setText("Please enter a username");
                     mUsername.setError("Enter a username");
                     return;
                 }
 
                 if(TextUtils.isEmpty(email)){
+                    mUserMsg.setText("Please enter your email");
                     mEmail.setError("Email is required");
                     return;
                 }
 
                 if(TextUtils.isEmpty(email)){
+                    mUserMsg.setText("Please enter your phone");
                     mPhone.setError("Phone is required");
                     return;
                 }
 
                 if(TextUtils.isEmpty(pass)){
+                    mUserMsg.setText("Please enter a password");
                     mPass.setError("Password is Required");
                     return;
                 }
 
                 if(TextUtils.isEmpty(confirmPass)){
+                    mUserMsg.setText("Please enter password again");
                     mConfirmPass.setError("Enter password again");
                     return;
                 }
 
 
                 if(pass.length()<6){
+                    mUserMsg.setText("Password must have 6 or more characters");
                     mPass.setError("Password must have 6 or more characters");
                     return;
                 }
 
                 if(!pass.equals(confirmPass)){
+                    mUserMsg.setText("Please enter the same password");
                     mPass.setError("Enter same password");
                     mConfirmPass.setError("Enter same password");
                 }

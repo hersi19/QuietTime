@@ -5,15 +5,16 @@
       <map>
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.10078125" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.14375" />
-        <entry key="app/src/main/res/layout/activity_create_new_task.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_create_new_task.xml" value="0.128125" />
         <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.14375" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.14375" />
-        <entry key="app/src/main/res/layout/activity_place_finder.xml" value="0.15526849037487336" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.16197916666666667" />
         <entry key="app/src/main/res/layout/activity_register_account.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_tasks.xml" value="0.15526849037487336" />
+        <entry key="app/src/main/res/layout/activity_tasks.xml" value="0.1140625" />
         <entry key="app/src/main/res/layout/fragment_1.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/task_input.xml" value="0.1743659420289855" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.14375" />
       </map>
     </option>

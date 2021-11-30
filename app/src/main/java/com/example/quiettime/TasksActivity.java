@@ -39,6 +39,7 @@ import java.util.ArrayList;
 
 public class TasksActivity extends AppCompatActivity {
 
+    TextView mUserMsg;
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
@@ -59,6 +60,7 @@ public class TasksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
 
+        mUserMsg = findViewById(R.id.task_error);
         toolbar = findViewById(R.id.tasks_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tasks");
@@ -120,6 +122,7 @@ public class TasksActivity extends AppCompatActivity {
         AlertDialog dialog = myDialog.create();
         dialog.setCancelable(true);
 
+        TextView mUserMsg = view.findViewById(R.id.task_error);
         EditText task = view.findViewById(R.id.task_input);
         EditText description = view.findViewById(R.id.description_input);
         EditText duration = view.findViewById(R.id.duration_input);
@@ -135,6 +138,7 @@ public class TasksActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mUserMsg.setText("");
                 String mTask = task.getText().toString();
                 String mDescription = description.getText().toString();
                 String mDuration = duration.getText().toString();
@@ -142,16 +146,19 @@ public class TasksActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(mTask)){
                     task.setError("Task Required");
-                    Toast.makeText(TasksActivity.this, "Failed: Must enter Task ",Toast.LENGTH_SHORT).show();
+                    mUserMsg.setText("Please enter the task's name");
+                    Toast.makeText(TasksActivity.this, "Failed: Must enter Task",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(mDescription)){
                     description.setError("Description Required");
-                    Toast.makeText(TasksActivity.this, "Failed: Must enter Description ",Toast.LENGTH_SHORT).show();
+                    mUserMsg.setText("Please enter the task's description");
+                    Toast.makeText(TasksActivity.this, "Failed: Must enter Description",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(mDuration)){
                     duration.setError("Duration Required");
+                    mUserMsg.setText("Please enter the task's duration");
                     Toast.makeText(TasksActivity.this, "Failed: Must enter Duration ",Toast.LENGTH_SHORT).show();
                     return;
                 }else{

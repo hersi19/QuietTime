@@ -109,8 +109,12 @@ public class PlaceFinder extends AppCompatActivity {
                 Log.d(TAG,"place URL set");
                 //Execute place task method to download json data
                 new PlaceTask().execute(url);
+
+
             }
         });
+
+
 
         //handle bottom navigation bar
         bottom_nav = (BottomNavigationView) findViewById(R.id.bottom_navigation);

@@ -44,7 +44,7 @@ public class Task {
         return id;
     }
 
-    public void setId(String duration) {
+    public void setId(String id) {
         this.id = id;
     }
 

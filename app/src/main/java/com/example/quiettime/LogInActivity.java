@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +24,7 @@ public class LogInActivity extends AppCompatActivity {
 
     EditText mEmail, mPassword;
     Button mLoginBtn;
+    TextView mUserMsg;
 
     FirebaseAuth fAuth;
 
@@ -31,7 +33,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-
+        mUserMsg= findViewById(R.id.errorMsg);
         mEmail= findViewById(R.id.loginEmail);
         mPassword=findViewById(R.id.loginPassword);
         mLoginBtn= findViewById(R.id.loginBtn);
@@ -59,11 +61,13 @@ public class LogInActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Enter your email");
+                    mUserMsg.setText("Enter your email");
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
                     mPassword.setError("Password is Required");
+                    mUserMsg.setText("Enter your Password");
                     return;
                 }
 
