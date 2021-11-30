@@ -43,12 +43,7 @@ public class ProfileActivityTest {
 
     }
 
-    @Test
-    public void testGreeting(){
 
-
-        Espresso.onView(withId(R.id.textView11)).check(matches(withText("Hi,")));
-    }
 
     @Test
     public void testLaunchUpdateEmail(){

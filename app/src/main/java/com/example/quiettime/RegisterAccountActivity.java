@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -20,8 +21,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 public class RegisterAccountActivity extends AppCompatActivity {
     public static final String REG = "RegisterAccountActivity";
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+
+    //input variables
+    EditText regUserName,regEmail,reg_phoneNumber,regPassword;
+    Button create;
 
     EditText mUsername, mEmail, mPhone,mPass, mConfirmPass;
     TextView mUserMsg;
@@ -33,6 +41,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_account);
+
 
         mUserMsg = findViewById(R.id.register_error);
         mUsername= findViewById(R.id.usernameInput);
@@ -145,6 +154,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
             }
 
         });
+
 
 
     }
