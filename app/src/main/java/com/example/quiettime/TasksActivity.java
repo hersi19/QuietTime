@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -83,7 +84,12 @@ public class TasksActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addTask();
+                int orientation = getResources().getConfiguration().orientation;
+                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    Toast.makeText(TasksActivity.this, "Please turn device to add Task",Toast.LENGTH_SHORT).show();
+                }else {
+                    addTask();
+                }
             }
         });
 
@@ -186,6 +192,7 @@ public class TasksActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         PagingConfig config = new PagingConfig(3,1, false);
 
         DatabasePagingOptions<Task> options = new DatabasePagingOptions.Builder<Task>()
@@ -218,7 +225,12 @@ public class TasksActivity extends AppCompatActivity {
                                 description = model.getDescription();
                                 duration = model.getDuration();
                                 isComplete = model.getIsComplete();
-                                updateTask();
+                                int orientation = getResources().getConfiguration().orientation;
+                                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                                    Toast.makeText(TasksActivity.this, "Please turn device to update Task",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    updateTask();
+                                }
                             }
                         });
                     }
