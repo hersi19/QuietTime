@@ -34,7 +34,8 @@
         android:id="@+id/tasks_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4f2deb" />
+        android:background="#4f2deb"
+        app:titleTextColor="@color/white"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.paging.PagingConfig;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.paging.DatabasePagingOptions;
+import com.firebase.ui.database.paging.FirebaseRecyclerPagingAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -183,36 +186,75 @@ public class TasksActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseRecyclerOptions<Task> options = new FirebaseRecyclerOptions.Builder<Task>()
-                .setQuery(reference.orderByChild("isComplete"), Task.class)
-                .build();
-        FirebaseRecyclerAdapter<Task, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Task, MyViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Task model) {
-                holder.setStatus(model.getIsComplete());
-                holder.setTask(model.getTask());
-                holder.setDescription(model.getDescription());
-                holder.setDuration(model.getDuration());
+        PagingConfig config = new PagingConfig(3,1, false);
 
-                holder.view.setOnClickListener(new View.OnClickListener() {
+        DatabasePagingOptions<Task> options = new DatabasePagingOptions.Builder<Task>()
+                .setLifecycleOwner(this)
+                .setQuery(reference, config, Task.class)
+                .build();
+        FirebaseRecyclerPagingAdapter<Task, MyViewHolder> adapter =
+                new FirebaseRecyclerPagingAdapter<Task, MyViewHolder>(options) {
+                    @NonNull
                     @Override
-                    public void onClick(View view) {
-                        key = getRef(position).getKey();
-                        task = model.getTask();
-                        description = model.getDescription();
-                        duration = model.getDuration();
-                        isComplete = model.getIsComplete();
-                        updateTask();
+                    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        // Create the ItemViewHolder
+                        // ...
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
+                        return new MyViewHolder(view);
                     }
-                });
-            }
-            @NonNull
-            @Override
-            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
-                return new MyViewHolder(view);
-            }
-        };
+
+                    @Override
+                    protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Task model) {
+                        holder.setStatus(model.getIsComplete());
+                        holder.setTask(model.getTask());
+                        holder.setDescription(model.getDescription());
+                        holder.setDuration(model.getDuration());
+
+                        holder.view.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                key = getRef(position).getKey();
+                                task = model.getTask();
+                                description = model.getDescription();
+                                duration = model.getDuration();
+                                isComplete = model.getIsComplete();
+                                updateTask();
+                            }
+                        });
+                    }
+                };
+
+// FirebaseRecyclerAdapter (Regular)
+//        FirebaseRecyclerOptions<Task> options = new FirebaseRecyclerOptions.Builder<Task>()
+//                .setQuery(reference.orderByChild("isComplete"), Task.class)
+//                .build();
+//        FirebaseRecyclerAdapter<Task, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Task, MyViewHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Task model) {
+//                holder.setStatus(model.getIsComplete());
+//                holder.setTask(model.getTask());
+//                holder.setDescription(model.getDescription());
+//                holder.setDuration(model.getDuration());
+//
+//                holder.view.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        key = getRef(position).getKey();
+//                        task = model.getTask();
+//                        description = model.getDescription();
+//                        duration = model.getDuration();
+//                        isComplete = model.getIsComplete();
+//                        updateTask();
+//                    }
+//                });
+//            }
+//            @NonNull
+//            @Override
+//            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
+//                return new MyViewHolder(view);
+//            }
+//        };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
 
@@ -249,8 +291,8 @@ public class TasksActivity extends AppCompatActivity {
             LinearLayout statusParent = view.findViewById(R.id.statusParent);
             if(isChecked){
                 statusView.setText("Completed");
-                statusView.setBackgroundResource(R.color.green);
-                statusParent.setBackgroundResource(R.color.green);
+                statusView.setBackgroundResource(R.color.blue);
+                statusParent.setBackgroundResource(R.color.blue);
             }else{
                 statusView.setText("Task");
                 statusView.setBackgroundResource(R.color.purple_500);
@@ -327,4 +369,6 @@ public class TasksActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
+
 }
