@@ -8,10 +8,10 @@
 
     <EditText
         android:id="@+id/phoneinput"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="40dp"
         android:ems="10"
         android:hint="Phone Number"
@@ -26,26 +26,26 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
         android:text="Phone"
         android:textColor="#009688"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameInput" />
 
     <EditText
         android:id="@+id/emailInput"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:text="Create Your Account"
         android:textColor="#673AB7"
@@ -65,25 +65,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/register_error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="30dp"
-        android:text=""
-        android:textColor="#FF0014"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
-
     <EditText
         android:id="@+id/usernameInput"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
@@ -98,30 +83,24 @@
 
     <EditText
         android:id="@+id/passInput"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:inputType="textPassword"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/confirmPassInput"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="10dp"
         android:inputType="textPassword"
         android:ems="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -130,60 +109,57 @@
         android:id="@+id/registerBtn"
         android:layout_width="280dp"
         android:layout_height="50dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="62dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="40dp"
         android:text="SIGN UP"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPassInput" />
+        app:layout_constraintTop_toBottomOf="@+id/passInput" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="74dp"
         android:text="Username"
         android:textColor="#009688"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="280dp"
         android:text="Email"
         android:textColor="#009688"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameInput" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="81dp"
         android:layout_height="22dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="234dp"
         android:text="Password"
         android:textColor="#009688"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneinput" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailInput" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         android:text="Confirm Password"
         android:textColor="#009688"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passInput" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneinput" />
 </androidx.constraintlayout.widget.ConstraintLayout>
